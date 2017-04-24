@@ -11,12 +11,13 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 @SessionScoped
+@Deprecated
 public class SimpleCalculatorWebApp implements Serializable {
 
     @EJB
     private SimpleCalculator calculator;
-    private String input = "";
-    private String result = "";
+    private String input = "123";
+    private String result = "0";
 
     public SimpleCalculator getCalculator () {
         return calculator;
