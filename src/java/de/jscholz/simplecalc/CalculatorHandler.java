@@ -43,7 +43,13 @@ public class CalculatorHandler {
         }
         else {
 
-            expression = displayText + " " + operator + " ";
+            if ( displayText.contains ( "-" ) ) {
+                expression = "um" + displayText.substring ( 1, displayText.length () ) + " " + operator + " ";
+            }
+            else {
+                expression = displayText + " " + operator + " ";
+            }
+
             displayText = digit + "";
             operator = null;
         }
@@ -67,6 +73,12 @@ public class CalculatorHandler {
 
     public void subtract () {
 
+        //Otherwise set the operator.
+        if ( expression != null && !expression.isEmpty () ) {
+            result ();
+        }
+        operator = "-";
+
     }
 
     public void addition () {
@@ -85,6 +97,7 @@ public class CalculatorHandler {
 
     public void result () {
         expression += displayText;
+        System.out.println ( expression );
         displayText = calculator.calculate ( expression );
         operator = null;
         expression = null;
