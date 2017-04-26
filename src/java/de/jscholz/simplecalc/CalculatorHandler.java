@@ -15,9 +15,12 @@ public class CalculatorHandler {
     @EJB
     private SimpleCalculator calculator;
     private String displayText;
+    private String expression;
+    private String operator;
 
     public CalculatorHandler () {
         displayText = "0";
+        operator = null;
     }
 
     public void addDigit ( final int digit ) {
@@ -28,14 +31,22 @@ public class CalculatorHandler {
             return;
         }
 
-        //We display always a zero, even if we don't diplay a number.
-        if ( displayText.equals ( "0" ) ) {
+        if ( operator == null ) {
+            //We display always a zero, even if we don't diplay a number.
+            if ( displayText.equals ( "0" ) ) {
 
-            //Remove the zero, so that the display text is not e.g 01.
-            displayText = "";
+                //Remove the zero, so that the display text is not e.g 01.
+                displayText = "";
+            }
+
+            displayText += digit;
         }
-
-        displayText += digit;
+        else{
+        
+            expression = displayText + " " + operator + " ";
+            displayText = digit + "";
+            operator = null;
+        }
     }
 
     public void clear () {
@@ -59,12 +70,18 @@ public class CalculatorHandler {
     }
 
     public void addition () {
+        if(expression != null && !expression.isEmpty ()) result ();
+        operator = "+";
     }
 
     public void multiply () {
     }
 
     public void result () {
+        expression += displayText;
+        displayText = calculator.calculate ( expression );
+        operator = null;
+        expression = null;
     }
 
     @Override
