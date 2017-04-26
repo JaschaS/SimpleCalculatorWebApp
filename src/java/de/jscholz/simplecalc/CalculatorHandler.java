@@ -41,8 +41,8 @@ public class CalculatorHandler {
 
             displayText += digit;
         }
-        else{
-        
+        else {
+
             expression = displayText + " " + operator + " ";
             displayText = digit + "";
             operator = null;
@@ -70,11 +70,17 @@ public class CalculatorHandler {
     }
 
     public void addition () {
-        if(expression != null && !expression.isEmpty ()) result ();
+        if ( expression != null && !expression.isEmpty () ) {
+            result ();
+        }
         operator = "+";
     }
 
     public void multiply () {
+        if ( expression != null && !expression.isEmpty () ) {
+            result ();
+        }
+        operator = "*";
     }
 
     public void result () {
