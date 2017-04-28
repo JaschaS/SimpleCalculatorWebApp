@@ -12,7 +12,7 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 @ApplicationScoped
-public class PostifxCalculatorHandler implements WebCalculator {
+public class PostfixCalculatorHandler implements WebCalculator {
 
     @EJB
     private PostFixCalculator calculator;
@@ -20,7 +20,7 @@ public class PostifxCalculatorHandler implements WebCalculator {
     private String expression;
     private String operator;
 
-    public PostifxCalculatorHandler () {
+    public PostfixCalculatorHandler () {
         displayText = "0";
         operator = null;
     }

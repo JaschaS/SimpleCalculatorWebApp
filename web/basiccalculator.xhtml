@@ -4,116 +4,130 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Simple Calculator</title>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-            th, td {
-                padding: 5px;
-                text-align: left;    
-            }
-        </style>
+        <title>Basic Calculator</title>
+        <h:outputStylesheet library="css" name="style.css"  />
     </h:head>
     <h:body>
 
-        <p>Simple Calculator</p>
+        <p align="center">Basic Calculator</p>
 
-        <h:form>
+        <h:form id="basicForm">
 
-            <table>
+            <table align="center">
                 <tr>
-                    <td align="right" colspan="4">
+                    <td align="right" colspan="4" class="result">
                         <div align="right">
-                            <h:outputLabel id="result" value="#{postifxCalculatorHandler.toString()}" ></h:outputLabel>
+                            <h:outputLabel id="result" value="#{basicCalc.toString()}" ></h:outputLabel>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <h:commandButton type="button" id="bnAC" value="AC" action="#{postifxCalculatorHandler.clearAll()}">   
+                    <td class="button">
+                        <h:commandButton type="button" id="bnAC" value="AC" action="#{basicCalc.clearAll()}">   
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
-                    <td>
-                        <h:commandButton type="button" id="bnClear" value="C" action="#{postifxCalculatorHandler.clear()}">
+                    <td class="button">
+                        <h:commandButton type="button" id="bnClear" value="C" action="#{basicCalc.clear()}">
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
-                    <td>
-                        <h:commandButton type="button" id="bnZero" value="0" action="#{postifxCalculatorHandler.addDigit(0)}">      
+                    <td class="button">
+                        <h:commandButton type="button" id="bnMod" value="&#37;" action="#{basicCalc.clear()}">
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </td> 
+                    <td class="button operator">
+                        <h:commandButton type="button" id="bnDiv" value="&#247;" action="#{basicCalc.clear()}">
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </td> 
+                </tr>
+                
+                <tr>
+                    <td class="button">
+                        <h:commandButton type="button" id="bnSeven" value="7" action="#{basicCalc.addDigit(7)}">
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
-                    <td>
-                        <h:commandButton type="button" id="bnEqual" value="=" action="#{postifxCalculatorHandler.result()}">      
+                    <td class="button">
+                        <h:commandButton type="button" id="bnEight" value="8" action="#{basicCalc.addDigit(8)}">  
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </td>
+                    <td class="button">
+                        <h:commandButton type="button" id="bnNine" value="9" action="#{basicCalc.addDigit(9)}">
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </td>
+                    <td class="button operator">
+                        <h:commandButton type="button" id="bnMul" value="&#215;" action="#{basicCalc.multiply()}">  
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="button">
+                        <h:commandButton type="button" id="bnFour" value="4" action="#{basicCalc.addDigit(4)}">  
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </td>
+                    <td class="button">
+                        <h:commandButton type="button" id="bnFive" value="5" action="#{basicCalc.addDigit(5)}"> 
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </td>
+                    <td class="button">
+                        <h:commandButton type="button" id="bnSix" value="6" action="#{basicCalc.addDigit(6)}">
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </td>
+                    <td class="button operator">
+                        <h:commandButton type="button" id="bnSub" value="-" action="#{basicCalc.subtract()}"> 
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <h:commandButton type="button" id="bnOne" value="1" action="#{postifxCalculatorHandler.addDigit(1)}" >
+                    <td class="button">
+                        <h:commandButton type="button" id="bnOne" value="1" action="#{basicCalc.addDigit(1)}" >
+                            <f:ajax render="@form" />
+                        </h:commandButton>
+                    </td>
+                    <td class="button">
+                        <h:commandButton type="button" id="bnTwo" value="2" action="#{basicCalc.addDigit(2)}">
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
-                    <td>
-                        <h:commandButton type="button" id="bnTwo" value="2" action="#{postifxCalculatorHandler.addDigit(2)}">
+                    <td class="button">
+                        <h:commandButton type="button" id="bnThree" value="3" action="#{basicCalc.addDigit(3)}">
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
-                    <td>
-                        <h:commandButton type="button" id="bnThree" value="3" action="#{postifxCalculatorHandler.addDigit(3)}">
+                    
+                    <td class="button operator">
+                        <h:commandButton type="button" id="bnAdd" value="+" action="#{basicCalc.addition()}"> 
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
-                    <td>
-                        <h:commandButton type="button" id="bnMul" value="*" action="#{postifxCalculatorHandler.multiply()}">  
-                            <f:ajax render="@form"/>
-                        </h:commandButton>
-                    </td>
+                    
                 </tr>
                 <tr>
-                    <td>
-                        <h:commandButton type="button" id="bnFour" value="4" action="#{postifxCalculatorHandler.addDigit(4)}">  
+                    
+                    <td colspan="2" class="button">
+                        <h:commandButton type="button" id="bnZero" value="0" action="#{basicCalc.addDigit(0)}">      
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
-                    <td>
-                        <h:commandButton type="button" id="bnFive" value="5" action="#{postifxCalculatorHandler.addDigit(5)}"> 
+
+                    <td class="button">
+                        <h:commandButton type="button" id="bnDot" value="." action="#{basicCalc.addDigit(0)}">      
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
-                    <td>
-                        <h:commandButton type="button" id="bnSix" value="6" action="#{postifxCalculatorHandler.addDigit(6)}">
-                            <f:ajax render="@form"/>
-                        </h:commandButton>
-                    </td>
-                    <td>
-                        <h:commandButton type="button" id="bnAdd" value="+" action="#{postifxCalculatorHandler.addition()}"> 
-                            <f:ajax render="@form"/>
-                        </h:commandButton>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h:commandButton type="button" id="bnSeven" value="7" action="#{postifxCalculatorHandler.addDigit(7)}">
-                            <f:ajax render="@form"/>
-                        </h:commandButton>
-                    </td>
-                    <td>
-                        <h:commandButton type="button" id="bnEight" value="8" action="#{postifxCalculatorHandler.addDigit(8)}">  
-                            <f:ajax render="@form"/>
-                        </h:commandButton>
-                    </td>
-                    <td>
-                        <h:commandButton type="button" id="bnNine" value="9" action="#{postifxCalculatorHandler.addDigit(9)}">
-                            <f:ajax render="@form"/>
-                        </h:commandButton>
-                    </td>
-                    <td>
-                        <h:commandButton type="button" id="bnSub" value="-" action="#{postifxCalculatorHandler.subtract()}"> 
+                    <td class="button operator">
+                        <h:commandButton type="button" id="bnEqual" value="=" action="#{basicCalc.result()}">      
                             <f:ajax render="@form"/>
                         </h:commandButton>
                     </td>
