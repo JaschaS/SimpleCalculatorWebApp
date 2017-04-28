@@ -1,6 +1,7 @@
 package de.jscholz.simplecalc.postfix;
 
 import de.jscholz.simplecalc.PostFixCalculator;
+import de.jscholz.simplecalc.WebCalculator;
 import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -11,7 +12,7 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 @ApplicationScoped
-public class PostifxCalculatorHandler {
+public class PostifxCalculatorHandler implements WebCalculator {
 
     @EJB
     private PostFixCalculator calculator;
@@ -24,6 +25,7 @@ public class PostifxCalculatorHandler {
         operator = null;
     }
 
+    @Override
     public void addDigit ( final int digit ) {
 
         //the digit in the range of 0 and 9 (both included).
@@ -56,6 +58,7 @@ public class PostifxCalculatorHandler {
         }
     }
 
+    @Override
     public void clear () {
 
         //If there is only one digit left, replace the digit with a zero.
@@ -68,10 +71,12 @@ public class PostifxCalculatorHandler {
         }
     }
 
+    @Override
     public void clearAll () {
         displayText = "0";
     }
 
+    @Override
     public void subtract () {
 
         //Otherwise set the operator.
@@ -82,6 +87,7 @@ public class PostifxCalculatorHandler {
 
     }
 
+    @Override
     public void addition () {
         if ( expression != null && !expression.isEmpty () ) {
             result ();
@@ -89,6 +95,7 @@ public class PostifxCalculatorHandler {
         operator = "+";
     }
 
+    @Override
     public void multiply () {
         if ( expression != null && !expression.isEmpty () ) {
             result ();
@@ -96,6 +103,11 @@ public class PostifxCalculatorHandler {
         operator = "*";
     }
 
+    @Override
+    public void divide () {
+    }
+
+    @Override
     public void result () {
         expression += displayText;
         System.out.println ( expression );
