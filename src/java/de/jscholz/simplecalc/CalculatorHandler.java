@@ -13,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 public class CalculatorHandler {
 
     @EJB
-    private SimpleCalculator calculator;
+    private PostFixCalculator calculator;
     private String displayText;
     private String expression;
     private String operator;
