@@ -1,5 +1,6 @@
-package de.jscholz.simplecalc;
+package de.jscholz.simplecalc.postfix;
 
+import de.jscholz.simplecalc.PostFixCalculator;
 import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -10,7 +11,7 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 @ApplicationScoped
-public class CalculatorHandler {
+public class PostifxCalculatorHandler {
 
     @EJB
     private PostFixCalculator calculator;
@@ -18,7 +19,7 @@ public class CalculatorHandler {
     private String expression;
     private String operator;
 
-    public CalculatorHandler () {
+    public PostifxCalculatorHandler () {
         displayText = "0";
         operator = null;
     }
